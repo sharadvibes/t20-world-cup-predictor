@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T20 World Cup 2026 Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.6s ease;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .predictions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .prediction-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .prediction-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+        
+        .rank-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .team-name {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .probability {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .stats {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .stat-item {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+        
+        .group-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .group-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .team-row:hover {
+            background: #e8ebff;
+            transform: translateX(5px);
+        }
+        
+        .team-info {
+            flex: 1;
+        }
+        
+        .team-name-small {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.05em;
+            margin-bottom: 5px;
+        }
+        
+        .team-status {
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        .advanced-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        
+        .pott-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.3);
+            text-align: center;
+        }
+        
+        .pott-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .pott-players {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .player-card {
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .player-name {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #667eea;
+        }
+        
+        .player-role {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .player-odds {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .key-insights {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        
+        .key-insights h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .insight-item {
+            color: #856404;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .legend {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .tabs {
+                gap: 8px;
+            }
+            
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 0.9em;
+            }
+            
+            .predictions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 T20 World Cup 2026 Predictions</h1>
+            <p>Live from India & Sri Lanka | Feb 7 - Mar 8, 2026</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('overview')">🎯 Tournament Winner</button>
+            <button class="tab-btn" onclick="openTab('groups')">📊 Group Analysis</button>
+            <button class="tab-btn" onclick="openTab('pott')">⭐ Player of the Tournament</button>
+        </div>
+        
+        <!-- Tournament Winner Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="legend">
+                <strong>Last Updated:</strong> Feb 8, 2026 | Early Tournament Stage | Predictions based on team form, squad strength, home advantage, and playoff positioning
+            </div>
+            
+            <div class="predictions-grid">
+                <!-- 1st Favorite -->
+                <div class="prediction-card">
+                    <span class="rank-badge">1ST FAVORITE</span>
+                    <div class="team-name">🇮🇳 India</div>
+                    <div class="probability">32%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 32%;"></div></div>
+                    <div class="stats">
+                        <div class="stat-item"><strong>Key Strength:</strong> Home advantage, defending champions</div>
+                        <div class="stat-item"><strong>Key Players:</strong> Suryakumar Yadav, Jasprit Bumrah, Hardik Pandya</div>
+                        <div class="stat-item"><strong>Weakness:</strong> Retirements of Rohit & Kohli, untested captain</div>
+                        <div class="stat-item"><strong>Path:</strong> Group A leaders → Potential Super 8 favorites</div>
+                    </div>
+                </div>
+                
+                <!-- 2nd Favorite -->
+                <div class="prediction-card">
+                    <span class="rank-badge">2ND FAVORITE</span>
+                    <div class="team-name">🇦🇺 Australia</div>
+                    <div class="probability">18%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 18%;"></div></div>
+                    <div class="stats">
+                        <div class="stat-item"><strong>Key Strength:</strong> Consistent performers, IPL stars</div>
+                        <div class="stat-item"><strong>Key Players:</strong> Travis Head, Glenn Maxwell, Adam Zampa</div>
+                        <div class="stat-item"><strong>Weakness:</strong> Recent warm-up losses, injury concerns</div>
+                        <div class="stat-item"><strong>Path:</strong> Group B tough competition with Sri Lanka</div>
+                    </div>
+                </div>
+                
+                <!-- 3rd Favorite -->
+                <div class="prediction-card">
+                    <span class="rank-badge">3RD FAVORITE</span>
+                    <div class="team-name">🇪🇳 England</div>
+                    <div class="probability">16%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 16%;"></div></div>
+                    <div class="stats">
+                        <div class="stat-item"><strong>Key Strength:</strong> Two-time champions, strong bowling</div>
+                        <div class="stat-item"><strong>Key Players:</strong> Harry Brook, Jofra Archer, Adil Rashid</div>
+                        <div class="stat-item"><strong>Weakness:</strong> Mixed recent form, reliance on few players</div>
+                        <div class="stat-item"><strong>Path:</strong> Easier Group C → Potential favorites for semis</div>
+                    </div>
+                </div>
+                
+                <!-- 4th Favorite -->
+                <div class="prediction-card">
+                    <span class="rank-badge">4TH FAVORITE</span>
+                    <div class="team-name">🇿🇦 South Africa</div>
+                    <div class="probability">14%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 14%;"></div></div>
+                    <div class="stats">
+                        <div class="stat-item"><strong>Key Strength:</strong> Strong batting & bowling combo</div>
+                        <div class="stat-item"><strong>Key Players:</strong> Aiden Markram, Kagiso Rabada, Quinton de Kock</div>
+                        <div class="stat-item"><strong>Weakness:</strong> Yet to win a World Cup, pressure situations</div>
+                        <div class="stat-item"><strong>Path:</strong> Group D with Afghanistan & NZ → Balanced route</div>
+                    </div>
+                </div>
+                
+                <!-- 5th Favorite -->
+                <div class="prediction-card">
+                    <span class="rank-badge">5TH FAVORITE</span>
+                    <div class="team-name">🇼🇮 West Indies</div>
+                    <div class="probability">10%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 10%;"></div></div>
+                    <div class="stats">
+                        <div class="stat-item"><strong>Key Strength:</strong> T20 pedigree, explosive batting</div>
+                        <div class="stat-item"><strong>Key Players:</strong> Shai Hope, Shimron Hetmyer, Romario Shepherd</div>
+                        <div class="stat-item"><strong>Weakness:</strong> Inconsistent form, weaker bowling depth</div>
+                        <div class="stat-item"><strong>Path:</strong> Group C with strong England team</div>
+                    </div>
+                </div>
+                
+                <!-- Others -->
+                <div class="prediction-card">
+                    <span class="rank-badge">OTHERS</span>
+                    <div class="team-name">🌍 Others</div>
+                    <div class="probability">10%</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 10%;"></div></div>
+                    <div class="stats">
+                        <div class="stat-item"><strong>Contenders:</strong> Pakistan, New Zealand, Afghanistan</div>
+                        <div class="stat-item"><strong>Dark Horses:</strong> Sri Lanka (home advantage), Ireland</div>
+                        <div class="stat-item"><strong>Factor:</strong> Underdog runs possible in short format</div>
+                        <div class="stat-item"><strong>Note:</strong> Pakistan boycotting India match (impact TBD)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-insights">
+                <h3>📌 Key Insights & Factors</h3>
+                <div class="insight-item">✓ <strong>Home Advantage Matters:</strong> India has won 6/8 group matches at home in 2024 WC. 5 Indian venues favor batting powerplay</div>
+                <div class="insight-item">✓ <strong>Pitch Conditions:</strong> India pitches are slower, favor spinners (Chakaravarthy, Kuldeep, Rashid Khan advantage)</div>
+                <div class="insight-item">✓ <strong>Recent Form Leader:</strong> India beat USA convincingly despite squad changes. West Indies won opener with 35-run margin</div>
+                <div class="insight-item">✓ <strong>Pakistan Boycott Impact:</strong> Losing match vs India guarantees 4 points loss + NRR damage. Makes their progression harder</div>
+                <div class="insight-item">✓ <strong>Uncertainty Factor:</strong> No Rohit/Kohli (India), No Pat Cummins (Australia), Rabada returning (SA) = unpredictability</div>
+            </div>
+        </div>
+        
+        <!-- Group Analysis Tab -->
+        <div id="groups" class="tab-content">
+            <div class="legend">
+                <strong>Status:</strong> Groups A & D started | Groups B & C continue | Top 2 from each group advance to Super 8s
+            </div>
+            
+            <!-- Group A -->
+            <div class="group-section">
+                <div class="group-title">📍 GROUP A - India, Pakistan, USA, Netherlands, Namibia</div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇮🇳 India</div>
+                        <div class="team-status">Beat USA by 29 runs | Strong favorites to top</div>
+                    </div>
+                    <span class="advanced-badge">LIKELY QUALIFIER</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇵🇰 Pakistan</div>
+                        <div class="team-status">Beat Netherlands in opener | Will boycott India match (risky)</div>
+                    </div>
+                    <span class="advanced-badge">AT RISK</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇺🇸 USA</div>
+                        <div class="team-status">Lost to India | Competitive but weak bowling</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇳🇱 Netherlands</div>
+                        <div class="team-status">Lost to Pakistan opener | Limited resources</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇳🇦 Namibia</div>
+                        <div class="team-status">Weakest team | Qualification near impossible</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+            </div>
+            
+            <!-- Group B -->
+            <div class="group-section">
+                <div class="group-title">📍 GROUP B - Australia, Sri Lanka, Ireland, Zimbabwe, Oman</div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇦🇺 Australia</div>
+                        <div class="team-status">Strong squad, IPL experience | Should top group</div>
+                    </div>
+                    <span class="advanced-badge">LIKELY QUALIFIER</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇱🇰 Sri Lanka</div>
+                        <div class="team-status">Home advantage (3 venues) | Competitive outfit</div>
+                    </div>
+                    <span class="advanced-badge">LIKELY QUALIFIER</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇮🇪 Ireland</div>
+                        <div class="team-status">Underdog potential | Bowling heavy squad</div>
+                    </div>
+                    <span class="advanced-badge">POSSIBLE</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇿🇼 Zimbabwe</div>
+                        <div class="team-status">Competitive but limited experience</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇴🇲 Oman</div>
+                        <div class="team-status">Associate nation, developmental stage</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+            </div>
+            
+            <!-- Group C -->
+            <div class="group-section">
+                <div class="group-title">📍 GROUP C - England, West Indies, Scotland (replaced Bangladesh), Nepal, Italy</div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇪🇳 England</div>
+                        <div class="team-status">Two-time champions | Strong favorites</div>
+                    </div>
+                    <span class="advanced-badge">LIKELY QUALIFIER</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇼🇮 West Indies</div>
+                        <div class="team-status">Won opener vs Scotland 35 runs | Can challenge England</div>
+                    </div>
+                    <span class="advanced-badge">LIKELY QUALIFIER</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</div>
+                        <div class="team-status">Lost opener, strong bowling | Outside chance</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇳🇵 Nepal</div>
+                        <div class="team-status">First time qualifiers | Growth team</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇮🇹 Italy</div>
+                        <div class="team-status">Tournament debut | Learning experience</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+            </div>
+            
+            <!-- Group D -->
+            <div class="group-section">
+                <div class="group-title">📍 GROUP D - New Zealand, South Africa, Afghanistan, Canada, UAE</div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇿🇦 South Africa</div>
+                        <div class="team-status">Strong contender | Rabada back from injury</div>
+                    </div>
+                    <span class="advanced-badge">LIKELY QUALIFIER</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇳🇿 New Zealand</div>
+                        <div class="team-status">Competitive squad | Playing in Sri Lanka</div>
+                    </div>
+                    <span class="advanced-badge">LIKELY QUALIFIER</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇦🇫 Afghanistan</div>
+                        <div class="team-status">Upset potential | Rashid Khan + young guns</div>
+                    </div>
+                    <span class="advanced-badge">POSSIBLE</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇨🇦 Canada</div>
+                        <div class="team-status">Associate nation, early exit likely</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+                <div class="team-row">
+                    <div class="team-info">
+                        <div class="team-name-small">🇦🇪 UAE</div>
+                        <div class="team-status">Fighting for a chance | Underdog</div>
+                    </div>
+                    <span class="advanced-badge">UNLIKELY</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Player of the Tournament Tab -->
+        <div id="pott" class="tab-content">
+            <div class="pott-card">
+                <h3>⭐ Player of the Tournament Predictions ⭐</h3>
+                <p style="font-size: 1.05em; margin-top: 10px;">Based on current form, tournament role, and recent performances</p>
+            </div>
+            
+            <div class="pott-players">
+                <div class="player-card">
+                    <div class="player-name">Jasprit Bumrah</div>
+                    <div class="player-role">🇮🇳 India | Bowler</div>
+                    <div class="player-odds">23% Chance</div>
+                </div>
+                
+                <div class="player-card">
+                    <div class="player-name">Travis Head</div>
+                    <div class="player-role">🇦🇺 Australia | Batter</div>
+                    <div class="player-odds">18% Chance</div>
+                </div>
+                
+                <div class="player-card">
+                    <div class="player-name">Suryakumar Yadav</div>
+                    <div class="player-role">🇮🇳 India | Batter</div>
+                    <div class="player-odds">16% Chance</div>
+                </div>
+                
+                <div class="player-card">
+                    <div class="player-name">Jofra Archer</div>
+                    <div class="player-role">🇪🇳 England | Bowler</div>
+                    <div class="player-odds">14% Chance</div>
+                </div>
+                
+                <div class="player-card">
+                    <div class="player-name">Glenn Maxwell</div>
+                    <div class="player-role">🇦🇺 Australia | Batter</div>
+                    <div class="player-odds">10% Chance</div>
+                </div>
+                
+                <div class="player-card">
+                    <div class="player-name">Rashid Khan</div>
+                    <div class="player-role">🇦🇫 Afghanistan | Bowler</div>
+                    <div class="player-odds">8% Chance</div>
+                </div>
+                
+                <div class="player-card">
+                    <div class="player-name">Hardik Pandya</div>
+                    <div class="player-role">🇮🇳 India | All-rounder</div>
+                    <div class="player-odds">6% Chance</div>
+                </div>
+                
+                <div class="player-card">
+                    <div class="player-name">Aiden Markram</div>
+                    <div class="player-role">🇿🇦 South Africa | Batter</div>
+                    <div class="player-odds">5% Chance</div>
+                </div>
+            </div>
+            
+            <div class="key-insights" style="margin-top: 30px;">
+                <h3>📊 POTT Analysis</h3>
+                <div class="insight-item">🎯 <strong>Bumrah's Case:</strong> Most economical bowler, death bowling crucial. Likely to play all matches. India's success heavily dependent on his performance</div>
+                <div class="insight-item">🎯 <strong>Head's Case:</strong> Explosive batter, IPL form strong. Australia need him to fire in middle order against quality attacks</div>
+                <div class="insight-item">🎯 <strong>Suryakumar's Case:</strong> Already scored 84 vs USA in opener (POTM). Captain's role + home ground advantage. Accumulator mindset fits tournament</div>
+                <div class="insight-item">🎯 <strong>Archer's Case:</strong> Fresh from Ashes, potentially unplayable with new ball. Key to England's success in group & beyond</div>
+                <div class="insight-item">📌 <strong>Trend:</strong> Recent T20 WC POTTs favor explosive batters from winning teams (Rizwan 2021, Nortje 2024). All-rounders increasingly valuable</div>
+                <div class="insight-item">⚠️ <strong>Note:</strong> POTT goes to standout performer from winning team usually. Tournament winner prediction heavily influences this</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(tabName) {
+            // Hide all tabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activate clicked button
+            event.target.classList.add('active');
+        }
+        
+        // Set initial active tab
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.tab-btn').classList.add('active');
+        });
+    </script>
+</body>
+</html>
